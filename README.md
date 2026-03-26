@@ -1,60 +1,32 @@
-# SoundCloud Playlist Downloader
+# soundcloud playlist downloader
 
-Download entire SoundCloud playlists as a ZIP file.
+download entire soundcloud playlists as a zip file.
 
-![Python](https://img.shields.io/badge/Python-3.14+-blue.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+## how to use
 
-## Download
+1. run the exe or `python soundcloud_app.py`
+2. paste a soundcloud playlist url
+3. click download
+4. find your zip in `C:\Users\you\SoundCloudDownloads`
 
-Get the ready-to-use executable:
-- **[SoundCloudPlaylistDownloader.exe](https://github.com/howma/soundcloud-zip/releases/latest/download/SoundCloudPlaylistDownloader.exe)**
+## requirements
 
-No installation required. Just double-click and run.
+- python 3.10+
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp) - `pip install yt-dlp`
+- [ffmpeg](https://ffmpeg.org/) - download or `winget install ffmpeg`
 
-## Features
-
-- Paste any SoundCloud playlist URL
-- Downloads all available tracks as MP3
-- Creates a ZIP file automatically
-- Saves to `C:\Users\YourName\SoundCloudDownloads`
-
-## Usage
-
-1. Double-click `SoundCloudPlaylistDownloader.exe`
-2. Paste a SoundCloud playlist URL
-3. Click **FETCH & DOWNLOAD**
-4. Wait for the ZIP file to be created
-
-## From Source
-
-### Requirements
-
-- Python 3.10+
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp): `pip install yt-dlp`
-- [ffmpeg](https://ffmpeg.org/): `winget install ffmpeg`
-
-### Run
+## run from source
 
 ```bash
-git clone https://github.com/howma/soundcloud-zip.git
-cd soundcloud-zip
+git clone https://github.com/stronkbonk/soundcloud-playlist-downloader.git
+cd soundcloud-playlist-downloader
 pip install yt-dlp
 python soundcloud_app.py
 ```
 
-## Build EXE
+## build exe
 
 ```bash
 pip install pyinstaller
 pyinstaller --onefile --windowed --name SoundCloudPlaylistDownloader soundcloud_app.py
 ```
-
-The EXE will be in the `dist` folder.
-
-## Requirements
-
-- **yt-dlp** - Downloads audio from SoundCloud
-- **ffmpeg** - Converts audio to MP3
-
-Without these, the app won't work. Install them before running.

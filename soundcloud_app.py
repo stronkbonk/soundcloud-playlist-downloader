@@ -160,23 +160,27 @@ class SoundCloudApp:
                 self.log("\nCreating ZIP archive...")
                 
                 zip_path = os.path.join(self.download_dir, f"{safe_title}.zip")
-                with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
-                    for f in mp3_files:
-                        file_path = os.path.join(session_dir, f)
-                        arcname = f
-                        zipf.write(file_path, arcname)
-                
-                zip_size = os.path.getsize(zip_path) / (1024 * 1024)
-                self.log(f"ZIP created: {zip_path}")
-                self.log(f"ZIP size: {zip_size:.2f} MB")
-                
-                self.log("\nCleaning up...")
-                shutil.rmtree(session_dir)
-                
-                self.log(f"\nZIP saved to: {zip_path}")
-                self.set_status(f"Done! {zip_path}", '#00ff00')
+                try:
+                    with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+                        for f in mp3_files:
+                            file_path = os.path.join(session_dir, f)
+                            arcname = f
+                            zipf.write(file_path, arcname)
+                    
+                    zip_size = os.path.getsize(zip_path) / (1024 * 1024)
+                    self.log(f"ZIP created: {zip_path}")
+                    self.log(f"ZIP size: {zip_size:.2f} MB")
+                    
+                    self.log("\nCleaning up temp files...")
+                    shutil.rmtree(session_dir)
+                    
+                    self.log(f"\nZIP saved to: {zip_path}")
+                    self.set_status(f"Done! {zip_path}", '#00ff00')
+                except Exception as zip_err:
+                    self.log(f"ZIP error: {zip_err}")
+                    self.set_status(f"ZIP failed, files in folder", '#ffaa00')
             else:
-                self.log("No files were downloaded")
+                self.log("No files downloaded - check logs above")
                 self.set_status("Download failed", '#ff4444')
             
             self.log("\n" + "=" * 50)
