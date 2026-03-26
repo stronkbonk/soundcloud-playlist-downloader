@@ -1,3 +1,7 @@
+bobby look look
+
+it's a soundcloud playlist downloader
+
 # soundcloud playlist downloader
 
 download entire soundcloud playlists as a zip file.
